@@ -1,0 +1,86 @@
+table Date
+	lineageTag: a33a0448-8fc7-49d4-94fa-98d67b87e1f2
+
+	column Date
+		formatString: General Date
+		lineageTag: b86ff7c1-30a7-435a-979f-c1b105ca43f9
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Date]
+
+		variation Variation
+			isDefault
+			relationship: 1650159b-a44a-4f34-b398-6d4226359dc9
+			defaultHierarchy: LocalDateTable_4777e64d-e355-4bd4-8bfc-90475fa3fc81.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'FINANCIAL MONTH' = SWITCH(MONTH('date'[Date]),1,"FM10",2,"FM11",3,"FM12",4,"FM1",5,"FM2",6,"FM3",7,"FM4",8,"FM5",9,"FM6",10,"FM7",11,"FM8",12,"FM9")
+		lineageTag: e30b8d81-d3db-49e2-b6e3-97d9cf12df9f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'fiscal quarter' = SWITCH(MONTH('date'[Date]),1,"FQ4",2,"FQ4",3,"FQ4",4,"FQ1",5,"FQ1",6,"FQ1",7,"FQ2",8,"FQ2",9,"FQ2",10,"FQ3",11,"FQ3",12,"FQ3")
+		lineageTag: fd1511d2-31e6-4761-9bc9-9f3b7908ce8f
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column monthname = FORMAT('date'[Date],"mmmm")
+		lineageTag: e97ecf2d-bdf0-4dd8-9db6-74aaf2edee97
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Monthno = MONTH('Date'[Date])
+		formatString: 0
+		lineageTag: ce8ee095-294f-40e0-96b0-cd055606e108
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Quarter = 'date'[Date].[Quarter]
+		lineageTag: 28f065d9-938d-40b0-a03e-f0cc0e48dc60
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weekday = FORMAT('date'[Date],"dddd")
+		lineageTag: 8680c177-ddb5-4232-9f93-c961525a6d24
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column Weeknumber = WEEKDAY('date'[Date])
+		formatString: 0
+		lineageTag: 544402cc-91c3-413a-ad98-5ca87d37111e
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column Year = YEAR('Date'[Date])
+		formatString: 0
+		lineageTag: 56396ebc-7f73-419b-aa7c-03a4cede9346
+		summarizeBy: sum
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'year month' = ```
+			FORMAT('date'[Date],"yyyy-mmm") 
+			```
+		lineageTag: f17059d2-5de8-46a0-ab73-320dd4542ad6
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Date = calculated
+		mode: import
+		source =
+				
+				CALENDAR (
+				    MIN ( Sheet1[Datekey_Opening]),
+				    MAX ( Sheet1[Datekey_Opening]))
+
+	annotation PBI_Id = 15110a2b5dcf4bf38e2a05b1d71636cb
+

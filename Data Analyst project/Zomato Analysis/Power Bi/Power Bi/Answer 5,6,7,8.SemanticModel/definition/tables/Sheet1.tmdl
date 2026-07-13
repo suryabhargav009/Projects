@@ -1,0 +1,225 @@
+table Sheet1
+	lineageTag: 20ef217a-1f62-4384-81b4-e60e8484f3d5
+
+	column RestaurantID
+		dataType: int64
+		formatString: 0
+		lineageTag: 8318ceba-b2ee-4ced-a14d-706524de3302
+		summarizeBy: count
+		sourceColumn: RestaurantID
+
+		annotation SummarizationSetBy = Automatic
+
+	column RestaurantName
+		dataType: string
+		lineageTag: a8f76b8e-7d01-4f3a-aff8-dfd4139ed17d
+		summarizeBy: none
+		sourceColumn: RestaurantName
+
+		annotation SummarizationSetBy = Automatic
+
+	column CountryCode
+		dataType: int64
+		formatString: 0
+		lineageTag: 2d096e61-329e-4b41-a589-8d8fee3a45e4
+		summarizeBy: none
+		sourceColumn: CountryCode
+
+		annotation SummarizationSetBy = Automatic
+
+	column City
+		dataType: string
+		lineageTag: 5350e139-f075-4a80-ad63-57c69421f85c
+		summarizeBy: none
+		sourceColumn: City
+
+		annotation SummarizationSetBy = Automatic
+
+	column Address
+		dataType: string
+		lineageTag: 0e0fc78f-3bc1-4cb9-886a-daa0dca29a17
+		summarizeBy: none
+		sourceColumn: Address
+
+		annotation SummarizationSetBy = Automatic
+
+	column Locality
+		dataType: string
+		lineageTag: 384a2e02-8689-484e-b59d-b953f3f6fc64
+		summarizeBy: none
+		sourceColumn: Locality
+
+		annotation SummarizationSetBy = Automatic
+
+	column LocalityVerbose
+		dataType: string
+		lineageTag: 58354b0b-a6e0-4b7c-b333-0c3fbac82b23
+		summarizeBy: none
+		sourceColumn: LocalityVerbose
+
+		annotation SummarizationSetBy = Automatic
+
+	column Longitude
+		dataType: double
+		lineageTag: 44d88200-7669-4e6d-bb07-77cb1321d7c6
+		summarizeBy: sum
+		sourceColumn: Longitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Latitude
+		dataType: double
+		lineageTag: e91516a9-9c18-4271-8019-20df00461c28
+		summarizeBy: sum
+		sourceColumn: Latitude
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Cuisines
+		dataType: string
+		lineageTag: 18bc544b-cee1-48a7-b31d-c501fe9e95c5
+		summarizeBy: none
+		sourceColumn: Cuisines
+
+		annotation SummarizationSetBy = Automatic
+
+	column Currency
+		dataType: string
+		lineageTag: 0080150e-62e0-4fed-aa3b-4580cf968538
+		summarizeBy: none
+		sourceColumn: Currency
+
+		annotation SummarizationSetBy = Automatic
+
+	column Has_Table_booking
+		dataType: string
+		lineageTag: 90f24a81-f436-4f4f-b4f8-c6d87eed7ade
+		summarizeBy: none
+		sourceColumn: Has_Table_booking
+
+		annotation SummarizationSetBy = Automatic
+
+	column Has_Online_delivery
+		dataType: string
+		lineageTag: fca014e8-7796-4091-908f-baf9c2f2d0f9
+		summarizeBy: none
+		sourceColumn: Has_Online_delivery
+
+		annotation SummarizationSetBy = Automatic
+
+	column Is_delivering_now
+		dataType: string
+		lineageTag: ef414036-8e90-43c4-99f9-76138e7755ce
+		summarizeBy: none
+		sourceColumn: Is_delivering_now
+
+		annotation SummarizationSetBy = Automatic
+
+	column Switch_to_order_menu
+		dataType: string
+		lineageTag: f292d858-5c05-4e78-ae03-59f49b78d4fc
+		summarizeBy: none
+		sourceColumn: Switch_to_order_menu
+
+		annotation SummarizationSetBy = Automatic
+
+	column Price_range
+		dataType: int64
+		formatString: 0
+		lineageTag: 909f3ecf-0a7b-42dc-a54c-816a2e8a9f05
+		summarizeBy: sum
+		sourceColumn: Price_range
+
+		annotation SummarizationSetBy = Automatic
+
+	column Votes
+		dataType: int64
+		formatString: 0
+		lineageTag: 5bfd5b5d-b3c5-42df-a92f-cf5744af24b2
+		summarizeBy: sum
+		sourceColumn: Votes
+
+		annotation SummarizationSetBy = Automatic
+
+	column Average_Cost_for_two
+		dataType: int64
+		formatString: 0
+		lineageTag: 413e9d5e-1b5e-4e35-995e-13f705cc3247
+		summarizeBy: sum
+		sourceColumn: Average_Cost_for_two
+
+		annotation SummarizationSetBy = Automatic
+
+	column Rating
+		dataType: double
+		lineageTag: f432206c-8132-4d97-a603-a1ffaece80a2
+		summarizeBy: sum
+		sourceColumn: Rating
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column Datekey_Opening
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: de8537f9-469e-4a08-b327-97df475bdb9e
+		summarizeBy: none
+		sourceColumn: Datekey_Opening
+
+		variation Variation
+			isDefault
+			relationship: 5dd16a36-9aed-46fa-884d-664f5d6b48d2
+			defaultHierarchy: LocalDateTable_234cc9d8-c56c-4776-afef-222d6f46efb5.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column 'Rating Category' =
+			
+			SWITCH( TRUE(),
+			    [Rating] >= 4, "4 - 5.0 (Excellent)",
+			    [Rating] >= 3, "3 - 4 (Great)",
+			    [Rating] >= 2, "2 - 3 (Average)",
+			    [Rating] >= 1, "1-2 Poor"
+			)
+		lineageTag: c856eecb-4356-4e5b-8388-d287ce0ab081
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Price category' =
+			
+			SWITCH( TRUE(),
+			    [Average_Cost_for_two] <= 500, "0-500",
+			    [Average_Cost_for_two] <= 1500, "500-1500",
+			    [Average_Cost_for_two] <= 5000, "1500-5000",[Average_Cost_for_two] <= 20000, "5000-20000",[Average_Cost_for_two] <= 100000, "20K-100K",[Average_Cost_for_two] <= 1000000, "100K-1M"
+			)
+		lineageTag: 6f809076-d81e-478b-96db-48d80b9bca7c
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition Sheet1 = m
+		mode: import
+		source =
+				let
+				    Source = Excel.Workbook(File.Contents("E:\DA classes\Project\Power Bi\Zomata (1).xlsx"), null, true),
+				    Sheet1_Sheet = Source{[Item="Sheet1",Kind="Sheet"]}[Data],
+				    #"Promoted Headers" = Table.PromoteHeaders(Sheet1_Sheet, [PromoteAllScalars=true]),
+				    #"Changed Type" = Table.TransformColumnTypes(#"Promoted Headers",{{"RestaurantID", Int64.Type}, {"RestaurantName", type text}, {"CountryCode", Int64.Type}, {"City", type text}, {"Address", type text}, {"Locality", type text}, {"LocalityVerbose", type text}, {"Longitude", type number}, {"Latitude", type number}, {"Cuisines", type text}, {"Currency", type text}, {"Has_Table_booking", type text}, {"Has_Online_delivery", type text}, {"Is_delivering_now", type text}, {"Switch_to_order_menu", type text}, {"Price_range", Int64.Type}, {"Votes", Int64.Type}, {"Average_Cost_for_two", Int64.Type}, {"Rating", type number}, {"Datekey_Opening", type text}, {"Column21", type any}}),
+				    #"Removed Columns" = Table.RemoveColumns(#"Changed Type",{"Column21"}),
+				    #"Replaced Value" = Table.ReplaceValue(#"Removed Columns","_","-",Replacer.ReplaceText,{"Datekey_Opening"}),
+				    #"Changed Type1" = Table.TransformColumnTypes(#"Replaced Value",{{"Datekey_Opening", type date}})
+				in
+				    #"Changed Type1"
+
+	annotation PBI_NavigationStepName = Navigation
+
+	annotation PBI_ResultType = Table
+
